@@ -30,7 +30,7 @@ struct ContentView: View {
     
     var body: some View {
         NavigationStack {
-            var computerOption = gameOptions[computerChoise]
+            let computerOption = gameOptions[computerChoise]
             
             VStack {
                 Spacer()
@@ -61,12 +61,12 @@ struct ContentView: View {
         
     }
     func game(User: Int, Computer: Int, Result: Int) {
-        if Result == 1 && gameOptions[Computer] == winningMovces[User] {
+        if Result == 1 && gameOptions[User] == winningMovces[Computer] {
             score += 1
             print("Win")
             print(winningMovces[User])
             
-        } else if Result == 0 && gameOptions[Computer] == winningMovces[User] {
+        } else if Result == 0 && gameOptions[User] != winningMovces[Computer] {
             score += 1
             print("Win")
             print(winningMovces[User])
