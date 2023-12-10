@@ -34,26 +34,29 @@ struct ContentView: View {
         NavigationStack {
             let computerOption = gameOptions[computerChoise]
             ZStack {
-                LinearGradient(colors: [.white, .blue], startPoint: .bottom, endPoint: .top)
+                LinearGradient(colors: [.gray, .blue], startPoint: .bottom, endPoint: .top)
             
             VStack {
+                Spacer()
                 Spacer()
                 Text("Choose the correct answer")
                     .font(.largeTitle.bold())
                     .foregroundStyle(.black)
-                Spacer()
-               
+                
+               Spacer()
+                VStack {
                     Text("You have to \(winCondition) the game")
-                            .font(.title2)
-                        .fontWeight(.heavy)
+                                .font(.title2)
+                            .fontWeight(.heavy)
+                
                 
                 
                 
                 Text("The computer chooses \(computerOption)")
                     .font(.title2)
                     .fontWeight(.medium)
+                    .padding(.bottom, 100)
                     
-                Spacer()
                 HStack{
                     
                     ForEach(0..<3) {number in Button {
@@ -66,11 +69,17 @@ struct ContentView: View {
                         
                     }
                     .buttonStyle(.borderedProminent)
+                    .controlSize(.large)
                     }
                     
                 
-                   
                 }
+
+                }
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 50)
+                .background(.regularMaterial)
+                .clipShape(.rect(cornerRadius: 20))
 
                 
                 .alert(isPresented: $showingAlert) {
@@ -80,7 +89,8 @@ struct ContentView: View {
 
                     
                 }
-
+                .padding()
+                Spacer()
                 Spacer()
             }
                 
