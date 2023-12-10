@@ -20,8 +20,6 @@ struct ContentView: View {
     let gameOptions = ["Rock", "Paper", "Scissors"]
     let winningMovces = ["Paper", "Scissors", "Rock"]
     
-    
-    // var computerOption = gameOptions[computerChoise]
     var winCondition: String {
         if randomNumber == 1 {
             return "win"
@@ -35,66 +33,66 @@ struct ContentView: View {
             let computerOption = gameOptions[computerChoise]
             ZStack {
                 LinearGradient(colors: [.gray, .blue], startPoint: .bottom, endPoint: .top)
-            
-            VStack {
-                Spacer()
-                Spacer()
-                Text("Choose the correct answer")
-                    .font(.largeTitle.bold())
-                    .foregroundStyle(.black)
                 
-               Spacer()
                 VStack {
-                    Text("You have to \(winCondition) the game")
-                                .font(.title2)
+                    Spacer()
+                    Spacer()
+                    Text("Choose the correct answer")
+                        .font(.largeTitle.bold())
+                        .foregroundStyle(.black)
+                    
+                    Spacer()
+                    VStack {
+                        Text("You have to \(winCondition) the game")
+                            .font(.title2)
                             .fontWeight(.heavy)
-                
-                
-                
-                
-                Text("The computer chooses \(computerOption)")
-                    .font(.title2)
-                    .fontWeight(.medium)
-                    .padding(.bottom, 100)
-                    
-                HStack{
-                    
-                    ForEach(0..<3) {number in Button {
-                        game(User: number, Computer: computerChoise, Result: randomNumber)
-                        print(number)
-                        refreshGame()
-                        showingAlert = true
-                    } label: {
-                        Text("\(gameOptions[number])")
+                        
+                        
+                        
+                        
+                        Text("The computer chooses \(computerOption)")
+                            .font(.title2)
+                            .fontWeight(.medium)
+                            .padding(.bottom, 100)
+                        
+                        HStack{
+                            
+                            ForEach(0..<3) {number in Button {
+                                game(User: number, Computer: computerChoise, Result: randomNumber)
+                                print(number)
+                                refreshGame()
+                                showingAlert = true
+                            } label: {
+                                Text("\(gameOptions[number])")
+                                
+                            }
+                            .buttonStyle(.borderedProminent)
+                            .controlSize(.large)
+                            }
+                            
+                            
+                        }
                         
                     }
-                    .buttonStyle(.borderedProminent)
-                    .controlSize(.large)
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 50)
+                    .background(.regularMaterial)
+                    .clipShape(.rect(cornerRadius: 20))
+                    
+                    
+                    .alert(isPresented: $showingAlert) {
+                        Alert(title: Text("\(winOrLose)"),
+                              message: Text("Your score is: \(score)"),
+                              dismissButton: .default(Text("Got it!")))
+                        
+                        
                     }
-                    
-                
+                    .padding()
+                    Spacer()
+                    Spacer()
                 }
-
-                }
-                .frame(maxWidth: .infinity)
-                .padding(.vertical, 50)
-                .background(.regularMaterial)
-                .clipShape(.rect(cornerRadius: 20))
-
                 
-                .alert(isPresented: $showingAlert) {
-                    Alert(title: Text("\(winOrLose)"),
-                          message: Text("Your score is: \(score)"),
-                          dismissButton: .default(Text("Got it!")))
-
-                    
-                }
-                .padding()
-                Spacer()
-                Spacer()
-            }
                 
-
             }.ignoresSafeArea()
             
         }
